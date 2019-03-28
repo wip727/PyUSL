@@ -1,2 +1,2 @@
 # PyUSL
-UniversalScalabilityLaw
+Universal Scalability Law in Python
