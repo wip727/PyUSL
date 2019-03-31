@@ -23,9 +23,9 @@ class USL:
 
     # Fit command, estimate the parameters of USL using nonlinear least square
     def fit(self, x = None, y = None):
-        if (x is not None) && (y is not None):
+        if (x is not None) and (y is not None):
             self.rawx = x
             self.rawy = y
 
             # Fit the data
-            xgrid = np.linspace(min(self.rawx), max(self.rawx), len(rawx))
+            xgrid = np.linspace(min(rawx), max(rawx), len(rawx))
