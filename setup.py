@@ -9,5 +9,10 @@ setup(
     author='ChangQing Wang',
     author_email='wip727@gmail.com',
     keywords=['Scalability testing', 'Universal Scalability Law', 'USL'],
-    url='https://github.com/wip727/PyUSL'
+    url='https://github.com/wip727/PyUSL',
+    install_requires=[
+        'numpy',
+        'matplotlib',
+        'scipy'
+    ],
 )
