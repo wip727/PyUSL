@@ -1,4 +1,4 @@
-# PyUSL
+# pyusl
 Universal Scalability Law in Python
 
 ## Required packages

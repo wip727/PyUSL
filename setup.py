@@ -1,11 +1,11 @@
 from setuptools import setup
 
 setup(
-    name='PyUSL',
+    name='pyusl',
     version='0.0.1',
     description='A package for calculating Universal Scalability Law (USL)',
     license='MIT',
-    packages=['PyUSL'],
+    packages=['pyusl'],
     author='ChangQing Wang',
     author_email='wip727@gmail.com',
     keywords=['Scalability testing', 'Universal Scalability Law', 'USL'],

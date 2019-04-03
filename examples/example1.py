@@ -1,5 +1,5 @@
-import PyUSL
-u = PyUSL.USL()
+from pyusl import usl
+u = usl()
 x = [1,2,4,8,16,32]
 y = [12,24,37,50,72,93]
 u.fit(x,y)

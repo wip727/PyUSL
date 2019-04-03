@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
-class USL:
+class usl:
     # Attributes:
     # Concurrency
     gamma = 1
@@ -31,22 +31,22 @@ class USL:
             self.rawy = y
 
             # Fit the data
-            popt, pcov = curve_fit(self._USLfunc, x, y, p0 = init_guess, bounds = (0, np.inf))
+            popt, pcov = curve_fit(self._uslfunc, x, y, p0 = init_guess, bounds = (0, np.inf))
             self.gamma = popt[0]
             self.alpha = popt[1]
             self.beta = popt[2]
 
             self.plotresult()
-            print(popt)
-            print(pcov)
+            print("Optimized parameters: ", popt)
+            print("Estimated covariance: ", pcov)
 
-    def _USLfunc(self, x, gamma, alpha, beta):
+    def _uslfunc(self, x, gamma, alpha, beta):
         return gamma * x / (1 + alpha * (x - 1) + beta * x * (x - 1))
 
     def plotresult(self):
         plt.plot(self.rawx, self.rawy, 'b-', label = 'measured data')
         xgrid = np.linspace(min(self.rawx), max(self.rawx), len(self.rawx) * 2)
-        plt.plot(xgrid, self._USLfunc(xgrid, self.gamma, self.alpha, self.beta),
+        plt.plot(xgrid, self._uslfunc(xgrid, self.gamma, self.alpha, self.beta),
         'g--', label = 'fitted USL curve: gamma=%3.2f, alpha=%3.2f, beta=%3.2f'
         % (self.gamma, self.alpha, self.beta))
         plt.xlabel('x')
