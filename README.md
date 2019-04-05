@@ -10,10 +10,22 @@ Universal Scalability Law in Python
 * nose (for unit testing)
 
 ## To install the package
-`sudo pip install pyusl`
+```
+sudo pip install pyusl
+```
+
+## To run a quick demo
+```
+cd examples
+python example1.py
+```
 
 ## To run tests
-`python setup.py test`
+```
+python setup.py test
+```
 or if you have nose installed, simply call
-`nosetests`
-in the project folder
+```
+nosetests
+```
+in the project folder.
