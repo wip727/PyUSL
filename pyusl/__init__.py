@@ -1,1 +1,1 @@
-from pyusl import *;
+from usl import *;
