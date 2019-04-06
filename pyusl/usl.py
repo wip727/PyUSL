@@ -43,6 +43,14 @@ class usl:
     def _uslfunc(self, x, gamma, alpha, beta):
         return gamma * x / (1 + alpha * (x - 1) + beta * x * (x - 1))
 
+    def compute(self, x = rawx):
+        if x is not None:
+            x = np.array(x)
+            return self._uslfunc(x, self.gamma, self.alpha, self.beta)
+        else:
+            print('Input x is empty.')
+            return None
+
     def plotresult(self):
         plt.plot(self.rawx, self.rawy, 'b-', label = 'measured data')
         xgrid = np.linspace(min(self.rawx), max(self.rawx), len(self.rawx) * 2)
