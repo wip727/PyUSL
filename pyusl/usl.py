@@ -22,7 +22,7 @@ class usl:
         self.beta = beta0
 
     # Fit command, estimate the parameters of USL using nonlinear least square
-    def fit(self, x = None, y = None, init_guess = [gamma, alpha, beta]):
+    def fit(self, x = None, y = None, init_guess = [gamma, alpha, beta], requires_plot = True):
         if (x is not None) and (y is not None):
             if (len(x) != len(y)):
                 raise AssertionError('x and y must have same lengths')
@@ -36,12 +36,11 @@ class usl:
             self.alpha = popt[1]
             self.beta = popt[2]
 
-            self.plotresult()
             print("Optimized parameters: ", popt)
             print("Estimated covariance: ", pcov)
 
-    def _uslfunc(self, x, gamma, alpha, beta):
-        return gamma * x / (1 + alpha * (x - 1) + beta * x * (x - 1))
+            if requires_plot:
+                self.plotresult()
 
     def compute(self, x = rawx):
         if x is not None:
@@ -54,10 +53,13 @@ class usl:
     def plotresult(self):
         plt.plot(self.rawx, self.rawy, 'b-', label = 'measured data')
         xgrid = np.linspace(min(self.rawx), max(self.rawx), len(self.rawx) * 2)
-        plt.plot(xgrid, self._uslfunc(xgrid, self.gamma, self.alpha, self.beta),
+        plt.plot(xgrid, self.compute(xgrid),
         'g--', label = 'fitted USL curve: gamma=%3.2f, alpha=%3.2f, beta=%3.2f'
         % (self.gamma, self.alpha, self.beta))
         plt.xlabel('x')
         plt.ylabel('y')
         plt.legend()
         plt.show()
+
+    def _uslfunc(self, x, gamma, alpha, beta):
+        return gamma * x / (1 + alpha * (x - 1) + beta * x * (x - 1))
