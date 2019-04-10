@@ -27,6 +27,8 @@ class TestUSL(TestCase):
         self.assertAlmostEqual(u.gamma, 2, places=5)
         self.assertAlmostEqual(u.alpha, 0, places=5)
         self.assertAlmostEqual(u.beta, 0, places=5)
+        self.assertEqual(u.rawx, x)
+        self.assertTrue(u.rawy, y)
 
     def test_compute(self):
         u = usl([1,2,3])
