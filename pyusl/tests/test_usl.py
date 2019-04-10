@@ -16,8 +16,8 @@ class TestUSL(TestCase):
         self.assertEqual(u.gamma, 3)
         self.assertEqual(u.alpha, 4)
         self.assertEqual(u.beta, 5)
-        self.assertIsNone(u.rawx)
-        self.assertIsNone(u.rawy)
+        self.assertEqual(u.rawx, 0)
+        self.assertEqual(u.rawy, 0)
 
     def test_fit(self):
         u = usl(3,4,5)

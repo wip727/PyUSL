@@ -12,8 +12,8 @@ class usl:
     beta = 0
 
     # Raw data to fit
-    rawx = None
-    rawy = None
+    rawx = 0
+    rawy = 0
 
     # Initializer, with initial guess as optional inputs
     def __init__(self, gamma0 = 1, alpha0 = 0, beta0 = 0):
@@ -40,22 +40,32 @@ class usl:
             print("Estimated covariance: ", pcov)
 
             if requires_plot:
-                self.plotresult()
+                self._plotfittedresult()
 
-    def compute(self, x = rawx):
-        if x is not None:
-            x = np.array(x)
-            return self._uslfunc(x, self.gamma, self.alpha, self.beta)
-        else:
-            print('Input x is empty.')
-            return None
+    def compute(self, x = None):
+        if x is None:
+            x = self.rawx
+        x = np.array(x)
+        return self._uslfunc(x, self.gamma, self.alpha, self.beta)
 
-    def plotresult(self):
+    def _plotfittedresult(self):
         plt.plot(self.rawx, self.rawy, 'b-', label = 'measured data')
         xgrid = np.linspace(min(self.rawx), max(self.rawx), len(self.rawx) * 2)
         plt.plot(xgrid, self.compute(xgrid),
         'g--', label = 'fitted USL curve: gamma=%3.2f, alpha=%3.2f, beta=%3.2f'
         % (self.gamma, self.alpha, self.beta))
+        plt.xlabel('x')
+        plt.ylabel('y')
+        plt.legend()
+        plt.show()
+
+    def plot(self, x = None):
+        if x is None:
+            x = self.rawx
+        y = self.compute(x)
+        plt.plot(x, y, 'g-',
+        label = 'USL curve: gamma=%3.2f, alpha=%3.2f, beta=%3.2f'
+            % (self.gamma, self.alpha, self.beta))
         plt.xlabel('x')
         plt.ylabel('y')
         plt.legend()
