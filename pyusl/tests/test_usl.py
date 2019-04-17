@@ -24,7 +24,7 @@ class TestUSL(TestCase):
         x = [1,3,6]
         y = [2,6,12]
         u.fit(x, y, requires_plot = False)
-        self.assertAlmostEqual(u.gamma, 2, places=5)
+        self.assertAlmostEqual(u.gamma, 2, places=4)
         self.assertAlmostEqual(u.alpha, 0, places=5)
         self.assertAlmostEqual(u.beta, 0, places=5)
         self.assertEqual(u.rawx, x)

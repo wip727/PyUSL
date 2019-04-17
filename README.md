@@ -1,6 +1,8 @@
 # pyusl
 Universal Scalability Law in Python
 
+![screenshot](http://github.com/wip727/PyUSL/exaples/images/pyusl.png "USL curve")
+
 ## Required packages
 * matplotlib (for result plotting)
 * numpy (for numeric computation)

@@ -22,7 +22,7 @@ class usl:
         self.beta = beta0
 
     # Fit command, estimate the parameters of USL using nonlinear least square
-    def fit(self, x = None, y = None, init_guess = [gamma, alpha, beta], requires_plot = True):
+    def fit(self, x = None, y = None, init_guess = None, requires_plot = True):
         if (x is not None) and (y is not None):
             if (len(x) != len(y)):
                 raise AssertionError('x and y must have same lengths')
@@ -30,6 +30,8 @@ class usl:
             self.rawx = x
             self.rawy = y
 
+            if init_guess is None:
+                init_guess = [self.gamma, self.alpha, self.beta];
             # Fit the data
             popt, pcov = curve_fit(self._uslfunc, x, y, p0 = init_guess, bounds = (0, np.inf))
             self.gamma = popt[0]
@@ -49,10 +51,10 @@ class usl:
         return self._uslfunc(x, self.gamma, self.alpha, self.beta)
 
     def _plotfittedresult(self):
-        plt.plot(self.rawx, self.rawy, 'b-', label = 'measured data')
+        plt.plot(self.rawx, self.rawy, 'b*', label = 'measured data')
         xgrid = np.linspace(min(self.rawx), max(self.rawx), len(self.rawx) * 2)
         plt.plot(xgrid, self.compute(xgrid),
-        'g--', label = 'fitted USL curve: gamma=%3.2f, alpha=%3.2f, beta=%3.2f'
+        'r-', label = 'fitted USL curve: gamma=%3.2f, alpha=%3.2f, beta=%3.2f'
         % (self.gamma, self.alpha, self.beta))
         plt.xlabel('x')
         plt.ylabel('y')
@@ -63,7 +65,7 @@ class usl:
         if x is None:
             x = self.rawx
         y = self.compute(x)
-        plt.plot(x, y, 'g-',
+        plt.plot(x, y, 'r-',
         label = 'USL curve: gamma=%3.2f, alpha=%3.2f, beta=%3.2f'
             % (self.gamma, self.alpha, self.beta))
         plt.xlabel('x')
