@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pyusl',
-    version='0.0.2',
+    version='0.0.3',
     description='A package for calculating Universal Scalability Law (USL)',
     license='MIT',
     packages=['pyusl'],
