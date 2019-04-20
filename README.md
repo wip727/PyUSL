@@ -1,6 +1,19 @@
 # pyusl
 Universal Scalability Law in Python
 
+## Background
+
+The original derivation of the Universal Scalability Law, or USL, was presented at the 1993 CMG conference by the computer scientist [Neil J. Gunther](https://en.wikipedia.org/wiki/Neil_J._Gunther). The law is an extension to the serial fraction concept contained in [Amdahl's law](https://en.wikipedia.org/wiki/Amdahl%27s_law). Let `X(N)` be the capacity or throughput of the system at a given load `N`, the USL states that
+```
+                              gamma  *  N                      
+X(N)   =   -------------------------------------------------------
+            1  +   alpha  *  (N − 1)  +  beta  *  N  *  (N − 1)
+```
+where α, β, γ sometimes called "the three Cs", are defined as the following (cited from [Gunther's blog](http://www.perfdynamics.com/Manifesto/USLscalability.html)):
+* Concurrency (gamma) or ideal parallelism, which represents the slope associated with linear-rising scalability.
+* Contention (with proportion alpha) due to waiting or queueing for shared resources.
+* Coherency (with proportion beta) due to the delay for data to become consistent (or coherent) by virtue of point-to-point exchange of data between resources that are distributed.
+
 ![screenshot](examples/images/pyusl.png "USL curve")
 
 ## Required packages
